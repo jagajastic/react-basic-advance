@@ -1,0 +1,10 @@
+ul.nav-ul {
+  list-style-type: none;
+  display: flex;
+}
+
+.nav-ul li {
+  padding: 1rem;
+  background-color: bisque;
+  margin-right: 5px;
+}

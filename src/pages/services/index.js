@@ -1,5 +1,5 @@
 import React from "react";
 
 export default () => {
-  return <p>Hello home</p>;
+  return <p>Hello services</p>;
 };

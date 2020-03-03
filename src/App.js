@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter } from "react-router-dom";
 // import logo from "./logo.svg";
 import "./App.css";
 import Layout from "./layout";
@@ -6,7 +7,9 @@ import Layout from "./layout";
 function App() {
   return (
     <div className="App">
-      <Layout />
+      <BrowserRouter>
+        <Layout />
+      </BrowserRouter>
     </div>
   );
 }
