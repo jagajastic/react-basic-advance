@@ -1,18 +1,27 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect, withRouter } from "react-router-dom";
 
 function Auth() {
-  console.log("ljkjfhfdghjk");
-  return false;
+  return { isAuth: false, userType: "user" };
 }
-export default ({ component: Component, ...rest }) => {
-  //   console.log(...rest);
+
+const ProtectedRoute = ({ component: Component, ...rest }) => {
+  const Menu = Auth();
+  rest.men = Menu;
+
   return (
     <Route
       {...rest}
-      render={props =>
-        Auth() === true ? <Component {...props} /> : <Redirect to="/login" />
-      }
+      render={props => {
+        if (Auth().isAuth) {
+          localStorage.setItem("details", JSON.stringify(Auth()));
+          return <Component {...props} />;
+        } else {
+          return <Redirect to="/login" />;
+        }
+      }}
     />
   );
 };
+
+export default withRouter(ProtectedRoute);

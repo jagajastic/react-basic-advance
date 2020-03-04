@@ -6,18 +6,23 @@ import NotFound from "../pages/NotFound";
 import About from "../pages/About/index";
 import ProtectedRoute from "../utils/ProtectedRoute";
 import Services from "../pages/services/index";
-const Layout = () => {
+import "./style.css";
+const Layout = props => {
+  const menuItems = JSON.parse(localStorage.getItem("details"));
+
   return (
     <main>
       <div>
-        <ul>
-          {menu.user.map(item => {
-            return (
-              <li>
-                <Link to={item.link}>{item.title}</Link>
-              </li>
-            );
-          })}
+        <ul className="nav-ul">
+          {menuItems.isAuth && menuItems.userType === "user"
+            ? menu.user.map((item, index) => {
+                return (
+                  <li key={index}>
+                    <Link to={item.link}>{item.title}</Link>
+                  </li>
+                );
+              })
+            : "Not a user"}
         </ul>
       </div>
       <div>
